@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SECRET DATA</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row content">
+                <div class="col-sm-3 sidenav">
+                    <h4>SECRET DATA</h4>
+                    <ul class="nav nav-pills nav-stacked">
+                    {% if active == 'home' %}
+                        <li class="active"><a href="/">Home</a></li>
+                    {% else %}
+                        <li><a href="/">Home</a></li>
+                    {% endif %}
+                    {% if active == 'create' %}
+                        <li class="active"><a href="/qr-code-create">Create QR Code</a></li>
+                    {% else %}
+                        <li><a href="/qr-code-create">Create QR Code</a></li>
+                    {% endif %}
+                    {% if active == 'scan' %}
+                        <li class="active"><a href="/qr-code-scan">Scan QR Code</a></li>
+                    {% else %}
+                        <li><a href="/qr-code-scan">Scan QR Code</a></li>
+                    {% endif %}
+
+                    </ul>
+                    <br />
+                </div>
+
+                <div class="col-sm-9">
+                    <div class="page-header">
+                        <h4>WELCOME</h4>
+                        <h5 id="date"><span class="glyphicon glyphicon-time" ></span> </h5>
+                    </div>
+                    
+                    <!-- Body -->
+                    {% block body %}
+   
+                    {% endblock %}
+                    <!-- Body -->
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="container-fluid">
+            <p>Footer Text</p>
+        </footer>
+    
+        <script>
+            const timeElapsed = Date.now();
+            const date = new Date(timeElapsed);
+            document.getElementById("date").innerHTML += date.getDate() + '.' + (date.getMonth() + 1) + '.' + (date.getFullYear()) + 
+                                                        ' - ' + (date.getHours()) + ':' + (date.getMinutes())
+        </script>
+    </body>
+</html>

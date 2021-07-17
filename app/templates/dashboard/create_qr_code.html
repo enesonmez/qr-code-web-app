@@ -1,0 +1,40 @@
+{% extends "/dashboard/index.html" %}
+<!-- Body -->
+{% block body %}
+<div>
+    <div class="col-sm-6">
+        <form action="/qr-code-create" method="post">
+            <div class="form-group">
+                <label for="exampleInputEmail1">QR Code Data</label>
+                <input type="text" class="form-control" placeholder="Enter data" name="data" required/>
+                <small id="emailHelp" class="form-text text-muted">This field is confidential information that will be stored in the qr code.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleColorInput" class="form-label">QR Code Fill Color</label>
+                <input type="color" class="form-control form-control-color" id="exampleColorInput" name="fill" value="#000000" title="Choose your color" required>
+                <small id="emailHelp" class="form-text text-muted">This field specifies the color of the line parts of the QR code picture.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleColorInput" class="form-label">QR Code Back Color</label>
+                <input type="color" class="form-control form-control-color" id="exampleColorInput" name="back" value="#ffffff" title="Choose your color" required>
+                <small id="emailHelp" class="form-text text-muted">This field specifies the background color of the QR code image.</small>
+            </div>
+            <button type="submit" class="btn btn-warning">Create</button>
+        </form>
+    </div>
+
+    {% if isImage == true %}
+
+    <div class="col-sm-6">
+        <img id="output" src="{{ url_for('static', filename='upload/' + fileUrl + '.png') }}" alt="QR" style="width:100%; height:width;">
+        <br>
+        <div class="col text-center">
+            <a class="btn btn-success" href="{{ url_for('dashboard.download', filename=fileUrl + '.png') }}" target="_blank" role="button">Download</a>
+        </div>
+    </div>
+
+    {% endif %}
+    
+</div>
+{% endblock %}
+<!-- Body -->
