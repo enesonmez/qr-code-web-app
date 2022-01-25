@@ -46,11 +46,11 @@ def getQrCodeCreate():
 
 @dashBoard.route('/download/<path:filename>', methods=['GET', 'POST'])
 def download(filename):    
-    upload = os.path.abspath('app/static/upload')
+    upload = os.getcwd() + "/app/static/upload"
     print(upload)
     print(filename)
-    resp = send_file(upload + '\\' + filename, attachment_filename=filename, as_attachment=True)
-    os.remove(upload + '\\' + filename)
+    resp = send_file(upload + '/' + filename, attachment_filename=filename, as_attachment=True)
+    os.remove(upload + '/' + filename)
     return resp #send_from_directory(upload, filename)
 
 
