@@ -38,8 +38,9 @@ def getQrCodeCreate():
         code.make(fit=True)
         img = code.make_image(fill_color=fill, back_color=back)
         fileName = uniqueFileName("enesonmez")
-        locate = os.path.abspath('app/static/upload')
-        img.save(locate + '\\' + fileName + '.png')
+        locate = os.getcwd() + '/app/static/upload'
+        filePath = locate + '/' + fileName + '.png'
+        img.save(filePath)
         return render_template("dashboard/create_qr_code.html", active='create', isImage=True, fileUrl = fileName) 
 
 
